@@ -25,7 +25,7 @@ export class ResultsTableComponent implements OnInit, OnDestroy {
      console.log(this.star);
     }
 
-ngOnDestroy(): void {
+  ngOnDestroy(): void {
     this.subsList.forEach(sub => sub.unsubscribe);
   }
 
@@ -33,9 +33,6 @@ ngOnDestroy(): void {
     setInterval(() => {
       this.subsList.push( this.pricesService.getPrice().subscribe(resp => {
         this.records = resp.records;
-        this.records.map(data => {
-          this.star.push({...data, favorito: false});
-        });
       }));
       }, 1500);
   }
