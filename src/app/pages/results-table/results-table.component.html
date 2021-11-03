@@ -8,8 +8,8 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let record of records; let i = index">
-            <th (click)="star = !star"><i [class]="star? 'far fa-star star' : 'far fa-star'"></i></th>
+        <tr *ngFor="let record of star; let i = index">
+            <th (click)="star[i].favorito = !star[i].favorito"><i [class]="star[i].favorito ? 'far fa-star star' : 'far fa-star'"></i></th>
             <td>{{ i + 1 }}</td>
             <td>{{ record.name}} - {{ record.symbol }}</td>
             <td>$ {{ record.price | dropCero }}</td>

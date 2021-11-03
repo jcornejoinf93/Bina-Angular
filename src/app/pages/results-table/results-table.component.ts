@@ -12,14 +12,20 @@ export class ResultsTableComponent implements OnInit, OnDestroy {
   constructor( private pricesService: PricesService ) {}
 
   public records: any[] = [];
-  public star = false;
+  public star = [];
   private subsList: Subscription[] = [];
 
   ngOnInit(): void {
       this.getPrices();
   }
 
-  ngOnDestroy(): void {
+  algp(id)
+    {
+     this.star.push(id);
+     console.log(this.star);
+    }  
+
+ngOnDestroy(): void {
     this.subsList.forEach(sub => sub.unsubscribe);
   }
 
@@ -27,6 +33,9 @@ export class ResultsTableComponent implements OnInit, OnDestroy {
     setInterval(() => {
       this.subsList.push( this.pricesService.getPrice().subscribe(resp => {
         this.records = resp.records;
+        this.records.map(data => {
+          this.star.push({...data, favorito:false});
+        })
       }));
       }, 1500);
   }
