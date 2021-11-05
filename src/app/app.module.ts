@@ -6,12 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ResultsTableComponent } from './pages/results-table/results-table.component';
 import { DropCeroPipe } from './pipes/drop-cero.pipe';
+import { HeaderComponent } from './shared/header/header.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ResultsTableComponent,
-    DropCeroPipe
+    DropCeroPipe,
+    HeaderComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
