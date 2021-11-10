@@ -9,14 +9,22 @@ import { PricesService } from '../../services/prices.service';
 })
 export class ResultsTableComponent implements OnInit, OnDestroy {
 
-  constructor( private pricesService: PricesService ) {}
+  constructor( private pricesService: PricesService ) {
+    this.config = {
+      itemsPerPage: 3,
+      currentPage: 1,
+      totalItems: this.records.length
+    };
+  }
 
   public records: any[] = [];
   public star = [];
   private subsList: Subscription[] = [];
+  public loading = true;
+  public config: any;
 
   ngOnInit(): void {
-      this.getPrices();
+    this.getPrices();
   }
 
   algp(id): void
@@ -32,8 +40,13 @@ export class ResultsTableComponent implements OnInit, OnDestroy {
   getPrices(): void {
     setInterval(() => {
       this.subsList.push( this.pricesService.getPrice().subscribe(resp => {
+        this.loading = false;
         this.records = resp.records;
       }));
-      }, 1500);
+      }, 500);
+  }
+
+  pageChanged(event): void {
+    this.config.currentPage = event;
   }
 }

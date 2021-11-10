@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +11,7 @@ import { ResultsTableComponent } from './pages/results-table/results-table.compo
 import { DropCeroPipe } from './pipes/drop-cero.pipe';
 import { HeaderComponent } from './shared/header/header.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { SearchComponent } from './shared/search/search.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +19,15 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     ResultsTableComponent,
     DropCeroPipe,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

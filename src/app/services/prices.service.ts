@@ -15,4 +15,8 @@ export class PricesService {
   getPrice(): Observable<any> {
     return this.http.get(`${ URL_BACKEND }/price`);
   }
+
+  getPriceforASymbol(symbol: string): Observable<any> {
+    return this.http.get(`${ URL_BACKEND }/pricesforsymbol/${ symbol }`);
+  }
 }
