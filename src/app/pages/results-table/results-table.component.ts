@@ -34,7 +34,7 @@ export class ResultsTableComponent implements OnInit, OnDestroy {
     }
 
   ngOnDestroy(): void {
-    this.subsList.forEach(sub => sub.unsubscribe);
+    this.subsList.forEach(sub => sub.unsubscribe());
   }
 
   getPrices(): void {
@@ -42,7 +42,7 @@ export class ResultsTableComponent implements OnInit, OnDestroy {
       this.subsList.push( this.pricesService.getPrice().subscribe(resp => {
         this.loading = false;
         this.records = resp.records;
-      }));
+      }) );
       }, 500);
   }
 

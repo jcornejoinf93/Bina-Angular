@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { PricesService } from '../../services/prices.service';
 
 @Component({
@@ -9,17 +10,19 @@ import { PricesService } from '../../services/prices.service';
 export class SearchComponent implements OnInit {
 
   public records: any[] = [];
+  public data$: Observable<any> = of([]);
 
   constructor( private pricesService: PricesService ) { }
 
   ngOnInit(): void {}
 
   buscar(termino: string): void {
-    console.log('termino', termino);
-    this.pricesService.getPriceforASymbol(termino).subscribe(resp => {
-      console.log('respuesta', resp.bookTickers);
-    });
-
+    const termMayus = termino.toUpperCase();
+    this.data$ = this.pricesService.getPriceforASymbol(termMayus);
+      // .subscribe(resp => {
+      //   const data = Object.entries(resp);
+      //   this.records = data;
+      // });
   }
 
 }
